@@ -58,7 +58,9 @@ public class UsuarioController {
 	
 	@PostMapping("factura")
 	public String generarFactura(@RequestBody FacturaModel factura){
-		
+		if(factura.getValor()<0){
+			return "El valor total de la compra debe ser mayor a 0";
+		}
 		return facturaService.imprimirFactura(factura.getUsuario(), factura.getValor());
 		
 	}
